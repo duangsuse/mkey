@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Page for scripts</title>
+<script>
+(onhashchange=()=>{let doc=document, s=doc.location.hash; if(s)doc.head.appendChild(doc.createElement("script")).src=s.slice(1).replace(".js","")+".js"; })()
+//'#'ensureSuffix(".js")
+</script>
+  </head>
+  <body>
+    <header><input onchange="document.location.hash=event.target.value" placeholder="scriptPath"></header>
+    <main></main>
+  </body>
+</html>
