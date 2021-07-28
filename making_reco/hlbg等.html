@@ -1,0 +1,22 @@
+<style>
+.g-ref {
+  -webkit-background-clip: text;background-clip: text;
+  color:transparent;
+}
+#ed {
+  margin:0; padding:0;/*ta*/
+  word-wrap:break-word; white-space:pre-wrap;
+  background-image:-webkit-canvas(hl)
+}
+</style>
+<div contentEditable class="g-ref ed"></div>
+<canvas id=hl></canvas>
+<script>
+doc=document, qs=s=>doc.querySelector(s);
+
+"family size weight"; "line-height"
+
+//高亮背景,Trie树,嵌套列表
+//selection Start/End 太简洁了，选取有 replace 没 get ,move 要自己实现，差点要用 div[contentEditable] 替换 ta ，想打人
+//left top 要减去 scroll
+</script>

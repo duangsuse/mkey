@@ -230,3 +230,4 @@ State: call/fresh=vars&ofIter, fresh=puts,
 - [Core.Logic Docs - Clojure](https://corelogicdocs.herokuapp.com/org.clojure-core.logic/clojure.core.logic)
 - [parser combinator](https://github.com/duangsuse-valid-projects/Share/blob/master/HTMLs/school/js/scan_fin.js)
 - [mk,equiv,propBind,scan 大提纲](making_reco/大提纲1.md)
+- [SWI-Prolog industrial Logical lang](https://www.swi-prolog.org/)
