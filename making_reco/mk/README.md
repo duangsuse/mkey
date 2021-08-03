@@ -112,3 +112,9 @@ function getCursorPos(input) {
 - http://docs.kissyui.com/1.4/docs/html/demo/xtemplate/base.html 基于类 YaCC 的模板引擎
 
 EQuery 连 AJAX 和 PJAX 都没有，更别提为老浏览器的 anim queue ，太屑了，草
+
+噢 [这个](https://www.c-sharpcorner.com/UploadFile/65794e/generate-screenshot-using-html-and-javascript/) 牛逼了 `window.open(Blob([ObjectURL],"text/html"))` 叫网页截屏啊
+
+quackit.com/css/functions/css_url_function.cfm 普通示例，可惜没法 js 创建
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/url() 弄 canvasvg 可能是个好方法，可惜还是要建节点

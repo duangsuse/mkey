@@ -13,7 +13,7 @@ canvas {
 }
 `
 el("canvas")
-colors="#233D4D #FE7F2D #FCCA46 #E4FDE1 #8ACB88"
+colors="#233D4D #ee0000 #66ccff #673ab7 #8ACB88".split(" ")
 
 quality = devicePixelRatio,maxQuality = 10 //max[t],curDPI[v]-bind
 e.id.useScrDPI.let(wOp.click(_=>{quality=device}))
@@ -45,7 +45,7 @@ function makeSquare(position) {
   return {
       position: position,
       size: squareSize,
-      colour: colours[Math.floor(Math.random() * colours.length)],
+      color: colors[Math.floor(Math.random() * colors.length)],
       opacity: Math.random() * 0.4 + 0.2
   };
 }
@@ -70,7 +70,7 @@ function updateSquares() {
   for (var i = 0; i < squares.length; i++) {
       if (inside(squares[i], cursor)) {
           squares[i].opacity = 0.5;
-          squares[i].colour = 'black';
+          squares[i].color = 'black';
           continue;
       }
       squares[i].opacity -= Math.random() / 100;
@@ -93,7 +93,7 @@ window.addEventListener('resize', setSize);
 function drawSquare(square) {
   context.globalCompositeOperation = "screen"; // 和 DIP 根本无关，抄的，笑死
   context.globalAlpha = square.opacity;
-  context.fillStyle = square.colour;
+  context.fillStyle = square.color;
   context.fillRect(square.position.val[0], square.position.val[1], square.size.val, square.size.val);
 }
 

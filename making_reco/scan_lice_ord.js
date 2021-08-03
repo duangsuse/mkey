@@ -134,7 +134,7 @@ _=slicerP=(opre, dOk=0)=>s=>{
 //slicer+feed+rec/One/Paired/eTakeIf=22+3+(1+4+3) 行， eMore和
 
 _.step=2
-_.op_exc_i1=ex=>execRe(/(\d+)/,ex.message,parseInt)
+_.op_exc_i1=ex=>execRe(/(\d+)/,ex.message,parseInt) //忽视 unexpected
 _.re_exc_eof=/(end)|(eof)/i
 
 //噪音 g.fillStyle=`hsl(0,0%,${100 - (Math.random() * 15)})`;g.fillRect(x,y,1,1)

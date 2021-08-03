@@ -98,7 +98,7 @@ watch1=o=>{
       let addel=c.get(k);
       return(addel===void 0)?v:
       (addel==null)?(...a)=>v.apply(po,a)
-      :withThis((o,...a)=>{let r=addel(o,...a);each(r[1],o.ondel);each([...r[0]].reverse(),o.onadd); return v.apply(o,a)})
+      :withThis((o,...a)=>{let r=addel(o,...a);each(r[1],o.ondel);each([...r[0]].reverse(),o.onadd); return v.apply(o,a)}) // 有一点，就是 Map.set 用了其 [[MapData]] 所以不能被 proxy
     },
     set:(o,k,v)=>{ // notify?
       let f=ko[k], oldV=o[k], isZ=oldV===void 0;

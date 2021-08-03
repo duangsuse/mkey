@@ -116,7 +116,7 @@ trie=(path=()=>new Map,a=[])=>{ // Trie 这种所有权结构怎么还会兼容 
       return q? d.get(ki) : rec(d.get(ki),k)
     } else { //create
       d.set(ki,p1=d.get(ki)||path()); // 惰性初始化只在这里做；当 KZ 时 return $N 让上层去 set(k,v) ，当 d.get 不是 Map 时 set(Map[KZ,v])
-    }
+    } // 单一路径也可以让 set 返回 0,1,2 零代表失败(末键KZ)，1 代表第一次 2 代表移除当前层 .s
   }
   return (k,v)=>rec(d0,isNon(k)?k:k[Symbol.iterator](),v)
 }

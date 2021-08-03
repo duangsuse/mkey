@@ -2,21 +2,102 @@
 .g-ref {
   -webkit-background-clip: text;background-clip: text;
   color:transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;/*默认slice，各得背景阴影边框一部分，现在如背景是渐变则分段背景各单独渲染*/
 }
 #ed {
   margin:0; padding:0;/*ta*/
-  word-wrap:break-word; white-space:pre-wrap;
   background-image:-webkit-canvas(hl)
 }
+.edd {word-wrap:break-word; white-space:pre-wrap;}
+.hide {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -10;
+}
 </style>
-<div contentEditable class="g-ref ed"></div>
+<textarea id=ed></textarea>
+<div class="edd"></div>
 <canvas id=hl></canvas>
 <script>
 doc=document, qs=s=>doc.querySelector(s);
 
-"family size weight"; "line-height"
+"family size weight"; "line-height letter-spacing word-spacing text-indent border-width"
+/*white-space: pre-wrap;
+overflow-wrap: break-word;
+word-break:break-word*/
+
+//我去 overflow/word wrap break 怎么戏这么足啊
 
 //高亮背景,Trie树,嵌套列表
+bindG=(id,w,h,mode="2d")=>{
+  let f,e,eref; if((f=doc.getCSSCanvas)!=null) return f.call(doc, mode,id,w,h)
+  e=ID(id), eref=qs(".g-ref");
+  if(e.style.MozOrient) eref.forEach(e=>e.style.background=`-moz-element(#${id})`)
+  else {
+    g.flush=()=>{ let u=`url(${e.toDataURL()})`; eref.forEach(e=>e.backgroundImage=u) } // 还有个方法是 CSSStyleValue.parse("background","url(#f)"), 还有个 new CSSVariableReferenceValue("--f") 可惜不能直接创建
+  }
+}
+
+Ta= {
+  i:t=>t.selectionStart, i1:t=>t.selectionEnd,
+  s:t=>String(t.rng()), set_s:(t,s)=>t.setRangeText(s),
+  measure(){ if(isNon(_e))_e=eMock(t, div());  _e.innerText=e.value; }, //还有人用 pos:abso; left:-999px 来实现看不见哈，不能 disp:none 因为 clientRect==0 ，
+  rng(){rng=_e.getSelection().getRangeAt(0)},
+  fromXY(x,y){ x=(isLBreak? 0:scrollLeft); j=x/offsetWidth*cols }, //额 into 要 from 是不要，如果用 pre-wrap 的话必须同步 div w,h selection 去计算结果
+  intoXY(i){rng()}
+}
+
+//eH={id,mock,hide}
+/*
+关于隐藏元素其实细节挺多的
+如果 vis:hidden 只是清除成白块(迫真, g.clearRect 都是透明)
+可选 LT:0, z-idx:-99 ，可一些浏览器不支持太大负 z序号，而且如果没挡的还是会显示出来(迫真)
+于是可以移到 pos=abs, LT=doc.w,h 位置，又要处理 resize 甚至 eList 更新 ，不用 list 又有了 addListener 内存泄漏问题，可以 WeakRef 又有了 .get()==null 问题
+
+所以 CSS 真是好啊，简单复杂控件都能 handle 到位；DOM 作为后端真是又裸又美(草
+*/
+
+//然后编辑树最好是 ul li 而不是嵌套 detail summary, 整体上节点还能携带AST ，折叠修改啥的是有一堆实现
+
+render=a=>a.map(t=>isAry(t)? ul(t.each(render(tt))) : li(t) ) //建议暴露 root node 直接append
+scrape=e=>e.childElementCount==0? lice(e.innerText) : [...e.children].map(scrape)
+//^ 略混淆语义，其实 render 本意也就是个 1/N 的树 rewrite 操作，scrape 如按同样思想只是在混淆 Array/Obj ，因为除 ul 所有节点都能有 child
+
+
 //selection Start/End 太简洁了，选取有 replace 没 get ,move 要自己实现，差点要用 div[contentEditable] 替换 ta ，想打人
 //left top 要减去 scroll
+
+next=g=>g.next().value,
+Trie=(a=[])=>{
+  let md=()=>new Map, p0=md(),
+  rec=(d,k,v)=>{
+    if(no(k)) { let k,v, KZ=Trie.KZ,vZ=d.get(KZ),N,i,nA,kv; d.delete(KZ); a.push("",vZ); //leaf 1st
+      for([k,v] of d.entries()) { N=v.size;rec(v,k,k); for(i=0,nA=n(a)-1;i<N;i++){kv=a[nA-i]; kv[0]=k+kv[0]} } // 啊觉着可用 [] buf 了
+      d.set(KZ,vZ);
+      return //sum
+    }
+    let ki=next(k),q,p1; if(q=no(ki))ki=KZ;
+    if(no(v)) {
+      p1=d.get(ki);
+      return q? p1 : rec(p1,k,v);
+    }
+    q? d.set(ki, v) : rec(d.get(ki)||md()/*.s=rest k*/, k,v) // if(d.s)try{} catch(ex){ s=undef;throw ex }
+  }
+  return (k,v)=>rec(p0, k[Symbol.iterator](), v) // if k catch, else void k
+    /*if(q)return d.set(ki,v);
+    let initP=()=>{
+      let p=d.get(ki); if(no(p)){ d.set(ki,p=md()); d.s=[...k]; return rec(p,d.s[Symbol.iterator](),v) }
+      throw NO;
+    }
+    if(!no(d.s)) try {initP()} catch {d.s=undef; initP()}
+    else initP()*/
+}
+Trie.KZ=Symbol("Val")
+
+//coll: iterator=entries new Proxy({}, {get:l,set:l,deleteProperty,enumerate,has,ownKeys:splice_l,entries:l_no})
+//不过 Obj.keys 是只返回 enumerable 的结果 propNames，草，但可 hook getOwnPropertyDescriptor 去取 enumerable value
+
 </script>

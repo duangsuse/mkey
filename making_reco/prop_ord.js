@@ -30,7 +30,7 @@ buildA,
 rng,rng0,rngPN,next,cycle,deconcat,eachNext,
 [rec,recP]=$YN(q=>f=>{let f1,run=n(f)==1?x=>f1(x):(...a)=>f1(...a); if(q)run.give=fr=>(f1=f(fr||run)); return q?run : f1=f(run)}),tco,nextN
 
-prop(Equiv,{noOp,get_flip,get_fwd,get_backwd})
+prop(Equiv,{noOp,map,get_flip,get_fwd,get_backwd})
 Equiv={pipe,run,opr,add,mul,json,caps,caps0,fmt,join,each,html,xml/*domS*/,obja,dicta}
 if(0){
   let b=prop({a:1}).notify
