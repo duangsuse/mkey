@@ -1,0 +1,45 @@
+其实最开始咱是打算用(后来才知道只 IE 的) doc.selection API 的，那能按词按行移光标的，想想 RegExp 也能做，但最主要意识到 DOM textarea 的缺点是只有 selection Start/End ，觉着还挺优雅的，但有选区覆盖没 get, 关键是不能给选区算宽高；后来咱想拿 isContentEditable div 去弄编辑框算了，但那个 API 连元素都可以插，太自由不利移植，于是后来想了折中方案， ta 和没滚动条且越屏幕界的模拟 div 1:1 以 measure(), getWH(i,i1), intoXY,fromXY 关联，这个 API 通过 getSelection,bounding ClientRect 等 API 把二者对应，然后我们就有了能据选区拿 xywh 矩形的方法
+
+这样在依据 [i,i1,color] 绘制时可以先取行高、累计行长(用于判断哪词时折行)，然后依据各自文本去测度、fillRect ，最后给 Safari,FF,Chrome 兼容的 clip-background -webkit-canvas 去 flush() 下就画完一次更新
+
+最开始是觉得必须自己处理换行与其y 累积的，可现在 selection 的 rect 暴露了全部的 xy ，看起来只需要解决 CRLF 的 ij->i 映射和 LBreak? 0 : offset 配置了
+
+coll(Trie, "a b c",[1,2,3])
+{a:1}, new Map
+
+More(One(
+  JSON, Name,
+  ...parens.map(k>Paired(k,e) )
+).also(it>.eg[ss("true 1 \"\" [] {} null"),
+  "a", "()"])) //presT-p
+
+Complicated parsing solved easy
+
+For the faint of heart. asT("If q a b").seen({If:t>q}) for AST usage
+For those fear of code duplicates. unparse, rebuild input string, read&rebuilds ArrayBuffer, two represention one heart, one scanjs
+For not-pure-functional lovers. semantics>data structure, magics noWhite,Trie,runP implemeted just with closures
+
+SOMe, PJOIT
+S(,asT),SN(,asA)
+
+Everything done once
+
+syntax&error-handling, semantics(eval,toStr), lexical spans, define at once.
+
+Everytime cares about costs
+
+single-suffix optimized Trie for keywords/operator symbols, unified undeep Ops data&method for -*/, even `.f()`, `is T` special RHS operators, modify op-precedence table even at runtime. say goodbye to ambiguous Left Recursion
+
+Verify by your eyes.
+
+explicit Incremental Parsing with partial-updated SwapRangeMap
+
+Everywhere it won't weight your bag
+
+Greedy,RegExp,Blob compatible library, with rich samples
+
+Jueju lex opchain&indent
+
+Don't believe it's just 200 lines-sloc, just watch
+
+

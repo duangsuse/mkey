@@ -166,7 +166,7 @@ _le=(t="UL")=>({
   render:rec(f=>a=>n(a)? el(t, a.map(x=>{let r,e=el("li",r=f(x)); if(r.tagName==t)e.classList.add("t-rec"); return e})) : el("span", a)), // 提示：可预检查下级、不设 str 入口，顶层就只能是多项
   scrape:rec(f=>e=>e.tagName==t? [...e.children].map_(ee=>f(ee.childNodes[0])) : e.textContent),
   edit:()=>el("div",wCmd(".tree"), el("br"), el("a",e=>e.onclick=ev=>{
-    let e0=e.parentNode,eT=e.previousSibling, q=eT.toggleAttribute("ContentEditable")
+    let e0=e.parentNode,eT=e.previousSibling, q=eT.toggleAttribute("ContentEditable") //v 该用 CSS 类
     e.innerText=q? "done":"edit"; if(q)eT.addEventListener(..._noTog); else eT.removeEventListener(..._noTog)&e0.dispatchEvent(new Event("change")); //难看，该用启监听配对
   },
     wCmd("_position=absolute _right=9px _top=5px _cursor=cell;edit"))).bind((e,a)=>e.children[0].let(e=>a?e.replaceWith(le.render(a)) : le.scrape(e)))
@@ -198,7 +198,8 @@ enaTRec=(summ=le.scrape)=>qs(".t-rec", doc.body, e0=>{
   };
   e0.onclick=tog;
 })
-doc.head.append(el("style",`li.t-rec{list-style-type:none;cursor:row-resize} .tree{border:1px solid green;position:relative} li>span{user-select:text}`)); // ul>li ul 嵌套、展开折叠、编辑通知、拖拽
+doc.head.append(el("style",`li.t-rec{list-style-type:none;cursor:row-resize} .tree{border:1px solid green;position:relative} li>span{user-select:text}
+ul.edit li.t-rec ul {cursor: text!important;}`)); // ul>li ul 嵌套、展开折叠、编辑通知、拖拽
 
 qs("li", doc.body,e=>{e.draggable=$Y; e.ondragend=ev=>{let eT=doc.elementFromPoint(ev.clientX,ev.clientY); if(eT.matches("li,span"))try{eT.insertAdjacentElement("beforeBegin",ev.target);}catch{} }});
 //^搞个懒初始化
@@ -372,3 +373,4 @@ slicerP=Object.assign((opre, dOk=0)=>s=>{
 slicerP(JSON.parse)(feed("1"))==1;
 slicerP(/(a)/)(feed("abc"))==["a"];
 slicerP(/f([\w\d])k/,2)(feed("f2k"))==2;
+//这次应用的 scan,trie,le 肯定可以(分别支持解析,Java系分词,Lisp树编辑)，但 Ta,Eta 编辑框可能要单独开发了(而且高亮单行更新、行号折叠边、行列号状态栏、自动缩进方案blob编码NL都很杂，还有上下拼删复注释的、字体字号分栏页的、排序插入大小写、边距空符重复串、配对括号、光标会话上下次改写 autosave、统计行词字长字节的)
