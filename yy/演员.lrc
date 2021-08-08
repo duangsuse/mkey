@@ -1,0 +1,211 @@
+[ti:演员]
+[ar:薛之谦]
+[al:绅士]
+[by:]
+[offset:0]
+[00:00.32]演员 - 薛之谦
+[00:01.61]词：薛之谦
+[00:02.64]曲：薛之谦
+[00:04.20]
+[00:21.12]简^单点 描述的方式简单~点
+[00:28.56]
+[00:30.20]常见的定义请省略(mK,trie)
+[00:33.64]观众又不^是机械
+[00:36.38]别提及领域细节
+[00:39.36]
+[00:41.93]没意^见 冗余的定义你怎么写:Math,cflw
+[00:50.41]
+[00:51.54]你严谨的太表面 像没过^程的机械
+[00:57.15]思维一年看不见
+[01:00.19]
+[01:02.22]该配合你展现的我却只是看客(yin)
+[01:07.68]在逼最爱找知识的我夸赞复制(AST,Monad)
+[01:12.90]什么^时候我们开始无视了读者
+[01:18.02]顺应小众的评议做那些浮华的展示(Tagless)
+[01:23.42]可你刚才那么严谨干嘛不说细节(M对比,应用序,dyscope)
+[01:28.63]我该变成什么样子才能更^快实现
+[01:33.87]原来为爱放下质疑后的这些那些
+[01:39.37]才是考验
+[01:41.97]
+[01:44.60]没意见 你怎么写我都随便
+[01:52.89]
+[01:54.53]你说法也有限:launch的Scope是CPS的Context,对比
+[01:57.58]又不用作感言
+[02:00.15]解决就平淡些:ArgParser,mkey
+[02:02.99]
+[02:05.00]该配合你上课的我疑惑在繁衍
+[02:10.53]别逼一个同道中的人即兴表演
+[02:15.81]什么时候我们开始不排序总结:jsinfo,snakes
+[02:21.01]顺着努力的谎言只伸展就不显局限(还不是不努力)
+[02:26.43]可你曾经那么明白干嘛不讲细节:rednaxela四则
+[02:31.52]我该变成什么样子才能猜测复现
+[02:36.72]原来为爱只去理解后的这些那些
+[02:41.86]再没有期限
+[02:44.60]
+[02:47.56]其实台下的同学就咱几个
+[02:53.04]其实我也看出你痴迷不舍
+[02:58.34]表达也习惯我们来回拉扯
+[03:02.93]还计较着什么
+[03:07.39]
+[03:08.71]其实说写不短的也不见得
+[03:14.04]其^实心得最怕的就是堆着:学霸笔记
+[03:19.21]越写到整体处越粘不出了:长26数组,list,trie
+[03:24.07]是否还值得
+[03:28.12]
+[03:29.07]该配合它思考的我全力在调试
+[03:34.39]像物种进化里的生死只靠重试
+[03:39.68]如果还能看见某时某地的赏读:Java
+[03:44.82]请排好那图示让我看上去不弱智
+[03:50.04]可你曾经那么懂得为何不见轮廓:视频教程
+[03:55.31]不在意的样子^是我最后的^选择
+[04:01.05]是因为怕你我才隐藏意见 ^这种成全
+
+你长你高级、你示例复杂你更能更现实
+尊重学术界但也鼓励HTML重排版，鼓励从论文里挖东西、做拆分简化的人
+
+findSli(dMin,tMin)selectd.window(tMin).filter{it.all{d->d<dMin}}.forEach(addMarker)
+soloSel()选区静音&选区前轨&反选静音|(选中至前标记&静音&折叠到末尾&添加标记)
+
+https://zhuanlan.zhihu.com/p/341720405
+https://blog.csdn.net/java8797/article/details/119292704
+https://zhuanlan.zhihu.com/p/353913403
+
+http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf
+https://zhuanlan.zhihu.com/p/67747730
+https://www.zhihu.com/question/34416029
+https://blog.csdn.net/lisonglisonglisong/article/details/39831571
+https://segmentfault.com/a/1190000008877595
+https://www.jianshu.com/p/bbfe4874f66f
+https://blog.csdn.net/yuzhiqiang666/article/details/80711441
+
+https://zhuanlan.zhihu.com/p/259894429
+
+$(".AuthorInfo-avatar").src=`https://tse1-mm.cn.bing.net/th?id=OIP-C.rwDweXbhz2Cu0javBE4utwHaHa&w=88&h=94&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2`; $(".AuthorInfo-name a.UserLink-link").innerText="路人甲"
+
+当冗杂的表达在你面前褪去，请记得m
+
+《没来由》
+get :: (T a) -> a -- 下面，多参(多餐)函数只需多次投喂满单参即得结果
+get _ = impossible
+
+ap (T f) o = (map f) o -- JS内避免临时 (x=>y=>x+y)(1)  即 y=>1+y 求值序出现
+map f o == ap (pure f) o
+
+liftA2 f o1 o2 =ap(ap (T f) o1) o2
+liftAN f os=fold (\o0 o->ap o0 o) (T f) os
+
+(foldl f v xs)=xs.reduce(f,v) 真以为你记得住顺序人肉重构
+只是靠语境按函数,单项,多项的类型逐个填写了
+
+Maybe={map_:(op,x)=>isNul(x)?x: op(x), fold:(x,op,opN)=>(isNul(x)?opN:op)(x)}
+
+add::(Monad m,Num a)=> m a -> (m a -> m a)
+add m1 m2 = do
+  a<-m1;b<-m2
+  return a+b
+
+map f No<|>(Just a)=Just (f a)
+map f (Just a)<|>No=Just a
+
+Maybe Alternative: map f No x=T fx; f T No=T -- No No; T T
+
+pure(1-)<*>(Just 1)<|>pure 2 == (\x-> 1-x)<$>(Just 1)<|>pure 2 == Maybe(1).map(x=>1-x).fold(Just, no=>Just(2))
+
+
+python montage.py  -font /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc -font-size 25 -text 再随性重复也优雅美 丽 冗长空洞却美丽.jpg  -scale 2 -spacing :-10,-10
+montage.py  -font /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc -font-size 20 -text 这浮华与我无关 与我无关.jpg
+
+
+好的程序直观反映它所操纵数据的结构
+好的文章直观反映问题之领域的数据模型和其上算法的必要性
+
+不是简洁便优美，也不是冗长就易懂
+不是学术便完胜，也不是死板就高性能
+对问题的好奇没有高低，对答案的渴求却总受对他人及知识之傲慢的敌意
+同一个问题有不同说法也有不同解法，无所谓天才或凡人，
+找到心中最富于表现的答案，才是语言最诚实的答案。
+
+我从来不需要向别人证明我爱这些东西，需要证明的爱都不够纯粹。
+我从来不暗示自己明白过，也一直努力提取出更洁白的它们，
+我没有那么无私，我丝毫不在乎旁人，只因为它是美丽而自由的，而愿意让它为更多人看见、带来更多可能，
+不在编程中显山露水，只是命名的语义到位，在它没有偏见与名誉的世界里，一切都刚刚好；
+毕竟喜欢是放纵，而爱是克制。
+
+
+@Override 只是注解处理程序(javax.annotation._Proc_or.process(env,elements))的覆盖检查
+printf("",...) 和 cout<<""<<"" 只是对函数、ostream 对象上 operator<< 中缀函数的调用，它们不叫语法
+使用不常见的语法实现目的并不能令程序变快，但它着实会使程序更难懂、更难移植和重构
+C 意义堆上分配是 (T)malloc(sizeof T)/new 、栈上分配参数和局部量随返回丢弃，Java 不能向地址写入也不能 free/delete 故无所谓分配，亦不需=null ，但不应把短生命周期的 Object 存在 class/static 级，可用 WeakRef
+new T(){} 会创建一个能以构造器&字段闭包住局部量的匿名子类，但包量不可变
+先学严格异步的 JS/DOM 比先学基于 os.Handler 队列主循环视图更新任务的 Android 更简单，且更易配置
+DOM 视图主节点模型 text|(tag attr* child*) 后者称 Element ，具 style 属性和 inner_ ，Qt,GTK,Py Tk,android.view 的模型与之类似，但 A.vi_ 需 ctx 参数、Tk/Qt 需父节点参数；DOM Mutation,Walker,Iter_ 需 AttrNode, 此外 fragment,CDATA 用于内联数据
+
+面向对象(OOP)的 class 不如称 thing, 代表一组名词信息量上能有的动(方法)名(属性)词集
+static 成员(名动词)是 class 1:1 伴生对象单实例的成员，就像 Ruby/Py 的 class 属 metaclass 类型的单实例，final 量不可重赋值,成员不可再定
+子程序提升一级就是 class ，参数变属性(=更规范的“字段”=名词)，单抽象方法即 SAM
+lambda 和 invokedynamic 没关系，也可用反射 Method invoke 代替，只是顺带性方便了N参 lam 接口实例的创建
+反射是按编译期?名称访问动名词，代理是把某些调用带参数移交至不同主语或整体覆盖
+函数式(FP)的闭包是能将 (k=> _=>k)(1)() k值带出外部 k=> 函数的函数值
+OOP的对象相当于可分段执行的 FP的函数闭包 (n=>{get:x=>x-n}).send(:get, 1)
+
+ES6,Kt `${1}` 字串内插(interpolat-ion)是多参的特殊表达式，同理 Py f"{}", Rb "#{}", C# $"{}"
+纯函数式和函数式没有任何关系、纯函数式也不是定义式编程/数据&动作绑定的必须品，它只是数学范畴-映射思维方法带入编程，本不需实机求值
+JS 支持set的Interval周期和Timeout定时器支持省略时差参数、剪贴板用 inp.select&doc.execCmd copy 命令写 onpaste.data 读、下载链接通过 URL._ObjectURL 从 Blob(mime,bufs) 创建、图片通过 FileReader DataURL(mime) 读取、富文本编辑器通过 iframe>body[ContentEditable] 属性和 doc.selection.getRangeAt(0) 裁剪编辑，内拖拽也易 draggable&ondragend(path[0]) 实现；低层次优先滑动切换是利用事件冒泡(未ev.stopPropa_)通知所有父节点，addEv_ 的参三是 isCapture 反向冒泡=捕获序，这都不是魔法。
+
+构造器一般为超类(实例是超集)优先固不应访问能被子类覆盖的虚成员(未调子构造器)，Rb Py JS 都有 allocate/new; new(cls)/__init__; Object()/T.call(self) 的分配-初始化过程，JS 的实例/构造函数(o.constr_)都有 __proto__ 指向父层成员表直至 Obj_.prototype 表，每个函数都可有 prot_e 成员表，Lua 利用 __get 钩函数也兼容原型链；这些动态语言的对象较类似 K-V 表，灵活但默认效能低，适合低计算密集任务
+二维数组索引 a[i][j] 其中 i<n, j<m ；分配时a长 n,内每项长 m ，i竖j横行；亦可以连续地址 n*m 的方式 a[i*m+j] 表示，行含多格(非“列”)
+若在位图/终端处理时无所适从，试试 a[y][x] 行号优先顺序
+链表和数组都是列表的实现方法，链 {x,xs} 到 xs=null 止，push:ll={x,ll};each=f(x)&if(xs)each(f,xs)
+数组 push:if(realloc改变)copy旧值; a[N-1]=x; each=for(i in 0..<N)f(a[i]) 故其取置更快，而链表更能利用零散内存且简单
+字串"" 是字符的数组(len_,[i],slice)通用可互化，字符是字符集(ASCII,Unicode,GBK..)内的编号，编码是字串的二进制等价形式如 ASCII-8bit,UTF-8 ；字符串s==s1是低开销操作， s=s+s1 高费因要创建新不可变&单实例字串，请StringBuilder
+广度搜索 BFS 是依赖关系管理器必备算法，若不是树形(有子->父 的环)则需检查集合已存?；深先搜索 DFS 可用于处理文件树，每层子项都加上层名即回溯完整路径
+二分查找在 Py 上有二分法封装: bisect([1,5],2)==1 ，自然序即升序0小先、逆序即降序大先
+列表 a.insert(i,x) 即JS a.splice(i,0,x)==[] 后 a[i]==x (右插)
+递归程序或许对数据的某部分应用自身，直至基线条件每层(包含顶层)按子项结果得到自身结果 如 f(n)=>n==0?0:f(n-1)+1；递归结构如 自然数=0|自然数+1 ，不要滥用递归可读性变差。
+快速排序把列表按中点分为 <中, >=中 两部分递归，单项即停止；快排一次能整合多项，便于子列表排序，其总移动量*最多递归层数 O(n*log2 n)
+冒泡排序认定 i1 右侧是有序部分，寻找0~i1间的更大者交换、选择排序是用删除+新列表的冒泡皆 O(sum(1~n)*n)；请不要手写不会更快
+图建模为 d:Map<T, Set<加权? Pair<Int,T> : T>>， d.keys 是根节点集， d[k] 是(边->下点)集；或可有 hasWalk 记录是否走过
+Dijkstra 狄图算法在带权图上找到权重和最低径，从权和=0 p0点开始轻优先，记录所有点的[当下已知]最轻前点&其权和，故未知前点=不直接可达不得优先，走遍后从任意 p-p0 可回溯最短路径；先搜索到的最短子径是确定的，不能有负权边。
+UnionFind 并查集利用数组状表(K=V=Int)构造/检查树形传递性关系，k最初与自己关联，若 merg(k,a) 则 k 与最大(顶父节点)的 a 关联；如 1-2, 2-5 时先连2,后能通过2连5(可顺便把k改成5,未来只需共通5即与己关联)； merg(a,b) 俩都是此种 a=b=c 传递&交换律链。
+DP 动态编程本质是参数缓存优化的递归
+简单子串搜索 (s,ss)=>(0~n(s)-n(ss)).find(i=>s.startsWith(ss,/*at*/i)) 如 ss="a" 区间=(0~N-1)
+常用归纳 "汤姆,杰瑞".split().reduce((q,k)=>q||"正常文本".indexOf(k)!=-1, false) 是 a.some=any 存在命题的简单实现； && false 则是 .every=all 的
+
+冷知识：名词再高端也没意义，涵义才有意义，可以随便换；语言再噱头也没意义，语义才是意义，可以随便换；只要你不怕别人不会
+
+编译原理和二进制序列化、虚拟机、词法分析没有硬关系，编译只是按上下文令树转化的普通子程序，解释器/编译器+虚拟机 两者有大量重叠(读写/参数编号化)代码
+
+作用域是符号->值/编译期定义的层叠、可变映射，可用全复制、K->栈<V>、栈<名值表>、栈<K旧值表>+全局表 实现
+词法域是编译期对动态域(i号参数?局部量?外部函数量?k名全局量?)名字的定义位置细分，支撑带数据程序闭包创建
+调用求值序：传值(=应用序)、惰性(传名)、表达式(C宏)
+数组、具名?元组(=record=dataclass=struct)都是积类型(可能性总和是乘法每项,即全部)但具名不以编号索引、数组不允不同类项；和类型(可能性总和是加法每项,即任一)是带 tag(=type) 的规范 union；enum 是const定义+新建类型的特殊写法
+
+组合子是以闭包组成的树，可进行后序遍历；(0+1)+2 可化为 f('+',f('+',f(0) 判闭包住的参数，看情况递归?求值
+CPS是不返回编程-只靠回调调用某函数，这样它就能自主决定下步操作是否执行；CPS 类似 Promise 能实现异步与异常级联返回(因为本来就没调用)，也能优化为不耗栈带返回编程
+Continuation 是程序下一步路径作为值，一般由闭包+指令指针/树路径构成，平行协程是必须提供创建方引用才能 yield 给它的无上下级协程
+尾递归优化TCO 是对任何情况都返回递归结果的函数的循环化，此种函数递归=重赋值所有参数&跳到头部再来遍, Lua/Scheme 可支持
+await/async 是利用协程yield时休眠实现- async程序yield收回调的操作给执行器，执行器等待并把结果 next(v)给休眠程序即“片段化”要等返回的线型程序；若不利用 next() 而共享变量仍可实现，本质是异步回调知道 async 程序的下一步从何处继续，即 CPS 化async内的异步调用
+类型推导是把关于某<T>的所有供需处(实参类型 Box<Int>、形参需求 Box<T>,f:T->R 等)信息相等归一，失败则不通过
+DFA 是前缀树广度搜索，前缀树(=Trie)是 List<K>至K,..末K 嵌套表(似文件树 cd,mkdir-p;touch V.txt)，NFA 不可判状态机是多转移规则的 DFA 前身， 其本身是 Trie 的编号化，正则匹配也不一定要明显用它实现
+关系式(=逻辑式)编程是面向关系为真的判断/推断/查询工具，主流有 miniKanren.org, SWI Prolog 家族, Coq,Agda 逻辑成立性系统也同类
+mK 归一化 unification 内变量也是一种值，被unify(a,b)和grab(v)接受用于解构&求解/从部分解回溯出完整解；输出结构可有性质故反函数有相等测试必要，且 one/all(...ps) 目标能从 ps bfs 出所有可能性
+T1=Subtype of T 是T能兼容其T1、T1派生自T 的类型系统成分，T1有T的所有接口成分，能覆写T成员的特性称为多态(=polymorphism,同名不同义)，它执行时要按真实类型判断，类型签名重载(overload) 是无开销的编译期多态
+类型A,B 的交集(&)是双方共同超类? 不对，那是 f(A|B) 共同&独有，如 Int|Float=Number，而(+)即(&)是A,B中的子类或空集；类型的交并集不是成员集意义上，而是看实例数 x is A&B=isA&isB (垠王称|为^能被某飞喷了 贵圈乱)。
+soundness 和 completeness 指检查器无假(无错,有错)，即总是(能查错,能通过正常)输入 ，停机问题死循环亦属程序输入，故二者逻辑上不可兼具
+lambda 演算是符号形式的规则，在 (Subst 变量名) (Abst 型参 体) (Apply abst 实参) 三基元有 a-重命名和 b-归纳(执行) 操作，lam 的函数是柯里化(curry)多参->多次单参的，喂参不够得函数值；Scheme 比它多个 (let[[a 1]] a) =((lam(a) a) 1) 及 1, "abc" 等实际符号，和基元 Prim 的 Apply (+ a b) 实现
+
+某说法：范畴是类型T，映射是 T->R 的范畴间(图论)箭头；凡是有 fEach=(map f::a->b)::(List a->List b) 即把 *(=任何类型)范畴的箭头映射到 List 范畴的箭头的T都是范畴；箭头可以组合(祖母=母.父)，  Hs 的(a+b)计算不动点是 (0+)=(id::a->a) ，否则 ((N-1)+) =(+1).(N+) ，即 (1+1)=(+1).id 1 ，"移动1"的标准版: (a+0)a,(a+(N-1)) (a+1)+N ，故计算可用箭头组合描述
+Monad 是指 monoid-含幺(音yao1, 1于*,0于+, =单位元)群上的群(IO,Maybe,Either a 等都是) ，逻辑约束 广义群(f,a b c:T)=f(f(a,b),c) 有效即 f:(T,T->T), +结合律=群 ；其中 群=半群，a上b=a且满足b
+当计算 Sum{add} 群时，把 Sum(n).add(x)=Sum(n+x) 即可，它实则也是 Monoid, mzero=0 ；结合另 List(1,2).map(Sum).fold(mzero) 得 Sum(3) ，这种 List<Sum<Int>> 双范畴的方法可用 foldMap:(m,f,x0)=m.reduce(a:f(x), x0);(m,f)=m.map(f).reduce(a:x) 进行计算；那 List<*>.mzero=[]
+『纯』的字眼意味着限制副作用的范围-仅引用时如透明-真正用到才计算，而 Monad (readLn::IO Int) (getLine::IO String >>=putStrLn::IO()) 给了副作用一个标记，且只有整体用到才会执行，不熟可以 ghci import再 :browse Control.Applicative 看这幺群 
+Monad 拥有 (>>=) 即 flatMap::(Monoid m)=>(a->m b)->(m a->m b) 操作，然后(m>>f)=m>>=\_->f,return=pure，如 map (\x->T (f x)) 可避免 (List (List a)) 类型出现，弱类型时  join m=m>>=(noOp::a->a) 可以从我们用计算机数据模拟范畴论的 T 内取出包住的原数据(List 会是多项，但视其为范畴，故范畴不总是“包着值方便map计算步骤”的)；然后 ap (T f) o = (map f) o 故 pure(1-)<*>(Just 1)是0 ，即 liftA(1-)(Just 1) 即 它 f o=pure f<*>o ，亦可 fmap
+
+这些都是场面话，专供不撞南墙不回头的萌新劝退，若你能把Java这些写出明确而不冗余的感觉，纯函数式又有什么好？讲了这么多最终没搞清Monad范畴的箭头到底是什么，搞清就是基础数学上的事了「数学和编程没有关系！编程和生活、举例技能关系最大」，你所迷信的大佬，或许自己也是模仿，并不想背后的理论；来应用编程，做好看的 App 它不比过于抽象的 Abst/Apply 香？
+
+Kt,Java T::f, o::f 可以用于引用实例/物上动词 f ，参数1可代表this 即 T.(A)->R 互换 (T,A)->R
+class A{static class AA{}} 是不能用 new A().new AA() 创建&能访问外层动名词、需 new A.AA() 的命名空间性质嵌套层次，可用此替代返回 new A(){} 函数
+(a==b)a先执行、(i)的值是它最新一次的值， i/*未变*/==i++; ++i==i/*既变*/; i/*未变*/+1==++i; ++i=(i=i+1) 既增新值 即 i.also{i+=1};(i+1).also{i=it} 的保存旧值?区别
+(&&) 和 (&) 的区别除了参数类型限制，a&&b 若a已成立不执行b，而单& 会完整执行a,b ；(||) 同理
+此技巧 bash 常见也有 a=a||init() (即空则 ?:init()) 的 JS/Rb 版
+
+请勿在表达式混入变量的写操作，尽量把 i++ 移到后面 ++i 移到前面，尤其是多次无关联时，这和性能毫无关系

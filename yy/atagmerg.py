@@ -16,8 +16,10 @@ def merg(f,fa,fb,fc):
   def rd(s):return wf(0,s).readframes(-1)
   a=rd(fa);b=rd(fb)
   c=wf(1,fc)
-  cfg=wf(0,fa).getparams(); c.setparams(cfg)
+  cfg=wf(0,fa).getparams();print(cfg); c.setparams(cfg)
   def cat(i,i1,q): print("B" if q else "A",i,i1);c.writeframes(b[i:i1] if q else a[i:i1])
+  def ccat(i,i1,q):
+    c.writeframes((a if q else b).readframes(i1-i)); (b if q else a).readframes(i1-i)
   tagYN(open(f,"r"), cfg,cat)
 
 from sys import argv
