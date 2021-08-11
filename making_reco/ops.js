@@ -38,3 +38,20 @@ N是N且(1-1)是0
 "x"是("x"是true)
 (N是N且false)`.split("\n").map(s=>/\s+|([()且是])/[Symbol.split](s).filter(m=>m!="") )
 .forEach(a=>{let b=[]; infix(a,x=>b.push(x)); console.log(b,reduceRO(b,binop)) }) // infix,RO 实应封作同 class(optab)
+
+
+/*如何实现递等式(带计算过程)？它同样能实现 coroutine 协程和调试器！
+
+求值时别看子树返回值，而是把当前层的副本交给它！表达式顶层仍有值，于是外包一层无值的 [] 让它放结果。
+这种方法 (1+2)+3 时这左项会重复2次(1,2 常量各一次)，才是 3+3=6 ，故封装 r(t[i]=tt) 去求子树，遇常量不通知 on_exp(t,i,v,t_top) ，且基于上层隐含本层 t 参数
+
+以上，yield x 只需throw回顶层，存既算值待下次；调试器可以 on_exp 提供步过/入/查覆值的操作 更能！
+*/
+
+/*atom和(op a b)有何区别？
+
+从数据类型它们是一样的！但顶层有可能是单个 atom ，故有必要切分语义
+
+为折叠表达式时方便，这适合以特殊类型封装，避免对op结果重复应用 atom 语义。
+
+ */

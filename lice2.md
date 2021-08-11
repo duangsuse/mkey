@@ -55,6 +55,19 @@ onmousewheel=(c=>ev=>{c.top=CSS.px(parseFloat(c.top)-ev.deltaY)})($0.style) //�
 
 啊我怼完了，好痛快啊家人们，记得 peace~ 心平气和
 
+## 成熟很多？
+
+Ta 首先要支持行列号 ij 和 pos 的 互化，那 DOM 就没有方法；但基于与 div 选区的等价可用 y/每行高 得 i ，而 j 则得维护个每i列数 求和得 j0 再去 -取/置
+在_时_会变化：点击/上下移动-行号 插删-列数 copy/cut/paste-若含换行整体
+
+接着是选区- measure() 同步内容 value 和选区到 div ，之后 s 代表文本/同步插入 ，xywh 代表视口Rect/s ；LBreak!=nul 时整体矩可帮助渲染 lineno=1 行号盒高
+
+最后是 mvI(k="",dn=-1,isSel=0) 移动光标和 i,i1, isI= i==i1, d_mvI 可求移动(N个词?行首?)的距离，可用算j及光标词/行高亮
+
+tarea 的 scroll 由外部 div{position:relative} 代理，其文字背景由 svg Canvas url() polyfill 基于 clip:text,color:rgba(0,0,0) transparent 绘制
+
+其编码NL、自动缩进、键绑定窗分割、字体、搜索替换由外部支持；折叠区、高亮色表与选区符号span、行增量高亮、多光标由内部支持
+
 
 咱想过 Trie(老朋友了 PKT 和一个翻译都用过)，但用最简单的写法写出来后才发现它只有一行(初次发现)……和 cd/mkdir-p &cat/printf 差不多是，流每项对应一个新 Map ，然后 end 对应端点值；联想到它必须一次一字符(public priv protect 这仨是看俩字就能区别的)，再说这个基本都是 O(n) 过滤带前缀、给前缀收集后缀(补齐用的到 filter starts)的，其实小解析器上根本没必要那么多 Map
 

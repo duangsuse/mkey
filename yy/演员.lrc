@@ -151,6 +151,7 @@ OOP的对象相当于可分段执行的 FP的函数闭包 (n=>{get:x=>x-n}).send
 ES6,Kt `${1}` 字串内插(interpolat-ion)是多参的特殊表达式，同理 Py f"{}", Rb "#{}", C# $"{}"
 纯函数式和函数式没有任何关系、纯函数式也不是定义式编程/数据&动作绑定的必须品，它只是数学范畴-映射思维方法带入编程，本不需实机求值
 JS 支持set的Interval周期和Timeout定时器支持省略时差参数、剪贴板用 inp.select&doc.execCmd copy 命令写 onpaste.data 读、下载链接通过 URL._ObjectURL 从 Blob(mime,bufs) 创建、图片通过 FileReader DataURL(mime) 读取、富文本编辑器通过 iframe>body[ContentEditable] 属性和 doc.selection.getRangeAt(0) 裁剪编辑，内拖拽也易 draggable&ondragend(path[0]) 实现；低层次优先滑动切换是利用事件冒泡(未ev.stopPropa_)通知所有父节点，addEv_ 的参三是 isCapture 反向冒泡=捕获序，这都不是魔法。
+selection 可获取屏上位置、共同容器、frag_复制剪切,节点全选,包围等，选区加粗等也不需手动slice innerText/insAdjHTML
 
 构造器一般为超类(实例是超集)优先固不应访问能被子类覆盖的虚成员(未调子构造器)，Rb Py JS 都有 allocate/new; new(cls)/__init__; Object()/T.call(self) 的分配-初始化过程，JS 的实例/构造函数(o.constr_)都有 __proto__ 指向父层成员表直至 Obj_.prototype 表，每个函数都可有 prot_e 成员表，Lua 利用 __get 钩函数也兼容原型链；这些动态语言的对象较类似 K-V 表，灵活但默认效能低，适合低计算密集任务
 二维数组索引 a[i][j] 其中 i<n, j<m ；分配时a长 n,内每项长 m ，i竖j横行；亦可以连续地址 n*m 的方式 a[i*m+j] 表示，行含多格(非“列”)
@@ -181,8 +182,14 @@ DP 动态编程本质是参数缓存优化的递归
 数组、具名?元组(=record=dataclass=struct)都是积类型(可能性总和是乘法每项,即全部)但具名不以编号索引、数组不允不同类项；和类型(可能性总和是加法每项,即任一)是带 tag(=type) 的规范 union；enum 是const定义+新建类型的特殊写法
 
 组合子是以闭包组成的树，可进行后序遍历；(0+1)+2 可化为 f('+',f('+',f(0) 判闭包住的参数，看情况递归?求值
-CPS是不返回编程-只靠回调调用某函数，这样它就能自主决定下步操作是否执行；CPS 类似 Promise 能实现异步与异常级联返回(因为本来就没调用)，也能优化为不耗栈带返回编程
-Continuation 是程序下一步路径作为值，一般由闭包+指令指针/树路径构成，平行协程是必须提供创建方引用才能 yield 给它的无上下级协程
+CPS是不返回编程-传后路编程，只靠回调调用某函数，这样它就能自主决定下步操作是否执行；CPS 类似 Promise 能实现异步与异常级联返回(因为本来就没调用)，也能优化为不耗栈带返回编程
+Continuation 是程序下一步路径作为值，一般由闭包+指令指针/树路径构成，平等协程 是必须提供创建方引用才能 yield 给它的无上下级协程
+它和 CPS 有一些区别，[程续]无视调用栈是自由移动的，而CPS让后执行的程序跨栈回到原来位置是靠调用时就只把后继操作奉上允其选择(如见异常级联找至在catch的回调)
+它是 Conti 的一种实现，如 (lambda(c) (call/cc (lambda(x)(set! c x)))(display 1) c) Ruby 1.yield_self{|f| callcc{|c|f=c}; puts 'Y'; f}.call
+它是不严谨的 yield ，callcc 自动生成CPS回调 把可能在 for, catch 的[程续]交给被调，而 yield 里被调和程续next()都是确定、单参单层的(所以只需 pause/wake 两个动词)，故其似魔法而像 平等协程
+宗上，CPS是实现协程[程续]切分的方法、Continuation 是休眠态的单个协程、callcc 是协程休眠并以能wake自己的动词调用函数；若有能断续执行程序，不需靠“切分”和优化 CPS 即能实现其接口
+Kt Coro 的 for(i in 0..9)launch{sleep;i} 调度10个各自独立任务，runBlocking{launch{}*2} 相当于 Promise.all ，孤立情况不能编译优化
+八字语言发展史：程序、对象、闭包、程续
 尾递归优化TCO 是对任何情况都返回递归结果的函数的循环化，此种函数递归=重赋值所有参数&跳到头部再来遍, Lua/Scheme 可支持
 await/async 是利用协程yield时休眠实现- async程序yield收回调的操作给执行器，执行器等待并把结果 next(v)给休眠程序即“片段化”要等返回的线型程序；若不利用 next() 而共享变量仍可实现，本质是异步回调知道 async 程序的下一步从何处继续，即 CPS 化async内的异步调用
 类型推导是把关于某<T>的所有供需处(实参类型 Box<Int>、形参需求 Box<T>,f:T->R 等)信息相等归一，失败则不通过
