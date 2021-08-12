@@ -124,3 +124,34 @@ num(noWhite(feed("   567"),re(/\s/)))==567;
 one=(...ps)=>s=>{let p,r;for(p of ps)if((r=p(s))!=noP)return r; return noP},
 
 atom=one(num, plet(re(/[+\-*/]/), Symbol))
+/*
+noWhite 的到这里就结束了，要处理 spans/wsBefore 上层基本就要负责 按行:高亮背图更新&查询(k,i) ，那就要 行号Ta
+
+那 {print("")} 都是存参数个数 1 的表达式了……
+
+利用 OpNAry, 支持非二项运算，结果除了调用?:连{}if都成了返回 object 生效 的表达式？
+
+后来发现 for,for-of,while 这些带参的{}也能做成返回循环次数(调试器用) 的 nA+N 参表达式…… 自带序列化? 顶层定义以下皆表达式？
+
+var 则成了引入局部名副作用的一组赋值…… 只是词法域 Vars{inc(f{args,set nlocal,_maxDi})/dec, set,find, i,di, j} 表达式都不是
+
+只有 delete Ref 不是表达式，语义写在单项求值里?
+
+是否用 ter(tree,eval,ret) 取代 ktr(const,tt,res) 分组，决定是保留，r 和子项 t 才有对应性k
+
+
+Vars 是动态作用域的抽象，它与 VarStack 共享 consts 数组和全局表
+at(k)得到 VarRef 供 Stack 求值时利用，S. 上有这些操作
+
+push(fn,arg,()=>t(3)) 调用
+make(fn) 若 maxDi 非0以栈slice创建闭包
+get(vref) 取局部、上部、全局、常量
+
+
+Vars 在解析和执行阶段都有用到！它在解析期把 name str 变成局部量编号，执行时却要 S. 去取这些编号
+
+语法(SOMe)和语义(Ops)阶段重复多吗？其实只有 +-* / ! 这些运算符有重叠，数据大部分不通用；所以 Vars 只负责 .st("scop") 存与解析流，总体结束时 .grab() 下 S. 对象，它提供 get, push/make 的 atom,optab 给 Ops.run 执行
+
+对于 Java class, AXML 等有常量池的结构，scanjs 读存前置常量池，暴露 get(k), add(v)，提供基 p.let 的解引用方法，在写入临时buf时收集出常量池并整理顺序即可
+
+*/

@@ -29,6 +29,7 @@ _排深先=(i0,i1,f)=>{
     for(x of n(aa)>n(b)?aa:b){a[iO++]=x; P.upd() }
   }
   _排深先(0,n(a), (i0,iC,i1)=>{用排(子,a,i0,iC); 用排(子,a,iC,i1); 合并(i0,iC,i1); }) // 它只要左右单独有序，不需右整体>左
+  //_排深先(0,n(a), (i0,iC,i1)=>{if(dep!=d0){用排(子,a,i0,iC); 用排(子,a,iC,i1);} 合并(i0,iC,i1); }) // 不需右最小>=左大
 },
 用排=(f,a,i0,i1)=>{
   //f(new Proxy(Array(i1-i0),{get:i=>a[i0+i], set:(i,v)=>{a[i0+i]=v; return true}}))
@@ -102,7 +103,7 @@ an.play(500)
 
 //merge,shell(分组),TimSort,minmax, cocktail,bogo猴子
 //std::sort Introsort,ins bottom-up merge,,odd-even 冒泡,梳comb冒泡,二分gnome,gravity,shatter,flash
-乱(10);P.upd();快排(入);P.anim().play(200)
+乱(10);P.upd();合并排(入);P.anim().play(200)
 //但是不支持暂停和调位/速 ，也没有数值渲染 xy=iv散点/柱形
 //AudioContext{dest,createX} Oscillator{type=square,freq=Hz,connect,start/stop} note[0], 1000 * 256 / (note[1] * tempo), 100
 示队列=(q)=>{
