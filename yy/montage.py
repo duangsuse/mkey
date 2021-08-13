@@ -49,18 +49,19 @@ def cv2VideoInfo(cap):
 def expandSrt(srt, fps, N, placeholder):
   indexed = [placeholder for _ in range(N)]
   no = lambda t: int(t.total_seconds() * fps)
-  for srt in srts:
-    start, end = no(srt.start), no(srt.end)
-    indexed[start:end] = repeat(srt.content, end - start)
+  for x in srt:
+    start, end = no(x.start), no(x.end)
+    indexed[start:end] = repeat(x.content, end - start)
   return indexed
 
 # font(size), scale, spacing; key_color
-class Montage(namedtuple("Mon", "font text key_color scale spacing calcColor back_color newSize".split())):
+class Montage(namedtuple("Mon", "font key_color scale spacing calcColor back_color newSize".split())):
   def __new__(cls, cfg, size):
     t=super(Montage,cls)
     cfg.back_color = let(hexcolor, cfg.mon_background) or cfg.key_color
     cfg.newSize=tuple(int(l*cfg.scale) for l in size)
     o=t.__new__(cls,**dict(e for e in cfg._get_kwargs() if e[0] in t._fields))
+    o.text=cfg.text
     o.updLayout()
     return o
   def updLayout(self):

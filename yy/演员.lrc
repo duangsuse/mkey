@@ -115,6 +115,7 @@ pure(1-)<*>(Just 1)<|>pure 2 == (\x-> 1-x)<$>(Just 1)<|>pure 2 == Maybe(1).map(x
 python montage.py  -font /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc -font-size 25 -text 再随性重复也优雅美 丽 冗长空洞却美丽.jpg  -scale 2 -spacing :-10,-10
 montage.py  -font /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc -font-size 20 -text 这浮华与我无关 与我无关.jpg
 
+python montage.py --subtitle-placeholder '瓜' -font /usr/share/fonts/wenquanyi/wqy-microhei/wqy-microhei.ttc --mon-background '#1A1A1E' -subtitle ~/Documents/咱动苏/卖瓜.srt ~/Documents/咱动苏/卖瓜.mp4  -spacing :10,10 -font-size 35
 
 好的程序直观反映它所操纵数据的结构
 好的文章直观反映问题之领域的数据模型和其上算法的必要性
