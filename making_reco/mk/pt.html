@@ -1,0 +1,60 @@
+<!doctype html>
+<style>.pt>ellipse{rx:1;ry:1;cx:1;cy:1;fill:red} .pt{width:20px;height:20px;position:absolute}</style>
+<p hidden><svg id=t-pt viewBox="0 0 2 2" class=pt><ellipse></svg></p>
+<b id=xy></b>
+
+<script>
+const doc=document,eid=k=>doc.getElementById(k), opOn=(o,f)=>{f(o);return o},
+px=x=>x+"px", movXY=(e,x,y)=>{e.style.left=px(x);e.style.top=px(y)},
+
+pt=v=>opOn(doc.body.appendChild(eid("t-pt").cloneNode(1)), e=>{(v.onchange=()=>movXY(e,v.x,v.y))();addDrag(e)}),
+addDrag=(e,ePar=window)=>{let f0, KM="onpointermove",
+  c=e.style,f=ev=>{c.left=px(ev.clientX),c.top=px(ev.clientY);eIndi.innerText=c.cssText}
+  e.onpointerdown=()=>{f0=ePar[KM];ePar[KM]=f}
+  e.onpointerup=()=>{ePar[KM]=f0}
+}
+eIndi=eid("xy")
+
+// p,pp;m,mm = +-*/; xy可代表 lx,dx 长即距 或点(x,
+class Vec2{constructor(x,y){this.x=x;this.y=y}
+get dup(){return new Vec2(this.x,this.y)}
+toString(){return `(${this.x},${this.y})`}
+static get Z(){return new Vec2(0,0)}
+static dot(a,b){return a.x*b.x+a.y*b.y}
+static rrel(a,dir,b){return Math.atan2(b.y-a.y,b.x-a.x)-(Math.atan2(dir.y,dir.x)) } } //coreceIn PI
+
+extOpThis=(T,c)=>{
+  let po=T.prototype,co={enumerable:false}, k,f;
+  for(k in c){f=c[k]; delete co.get;delete co.value; (f.length==1)?co.get=fthis(f):co.value=fcthis(f); Object.defineProperty(po,k,co)}
+},fthis=f=>function(...a){return f(this,...a)},fcthis=f=>function(...a){f(this,...a);if(this.onchange)this.onchange();return this}
+
+extOpThis(Vec2,{
+p:(v,n)=>{v.x+=n;v.y+=n},pp:(v,n)=>{v.x*=n;v.y*=n},
+m:(v,n)=>{v.x-=n;v.y-=n},mm:(v,n)=>{v.x/=n;v.y/=n},
+
+pxy:(v,a,b)=>{if(b!=null){v.x+=a;v.y+=b;return} v.x+=a.x;v.y+=a.y},
+mxy:(v,a)=>{v.x-=a.x;v.y-=a.y},
+
+//角度: atan2 dy dx
+r:({x,y})=>Math.atan2(y,x),
+//勾股距: sqrt(x*x+y*y) 除小于 0.005
+l:({x,y})=>Math.sqrt(x*x+y*y),
+//角转: (x*cos r - y*sin r), (x*sin r + y*cos r)
+rp:(v,r)=>{let{sin,cos}=Math,{x,y}=v; v.x=x*cos(r) -y*sin(r); v.y=x*sin(r) +y*cos(r)},
+//设转: l*cos r, l*sin r
+rv:(v,r)=>{let{sin,cos}=Math, l=v.l; v.x=l*cos(r);v.y=l*sin(r)},
+//设距: 若无距,设 ,否 p*(l1/p.l)
+lv:(v,n)=>{if(v.l==0)v.x=v.y=n; else v.mm(n/v.l)  },
+//数值稳定 p/p.l
+norm:v=>v.mm(v.l)
+})
+
+a=opOn(Vec2.Z.pxy(150,50),pt)
+b=opOn(Vec2.Z.pxy(150,50),pt)
+
+animT=(dur,n,f)=>{
+  let i=0,id=setInterval(()=>f(i++), dur/n);
+  setTimeout(()=>clearInterval(id), dur);
+}
+animT(1000,20,i=>{a.rv(0.1*i); a.lv(a.l+i)})
+</script>

@@ -21,7 +21,7 @@ def calcItemLayout(wh, wh_item, c):
   (w, h) = wh
   (ww, hh) = tuple((l+sp)*c.scale for (l, sp) in zip(wh_item, c.spacing))
   (m, n) = tuple(int(v) for v in [w / ww, h / hh])
-  (padLeft, padTop) = tuple(int(l*c.scale / 4) for l in [(w % ww), (h % hh)])
+  (padLeft, padTop) = tuple(int(l*c.scale / 2) for l in [(w % ww), (h % hh)])
   return (ww, hh, m, n, padLeft, padTop)
 
 def drawMontageText(img, xyc, seq, cfg):
@@ -98,6 +98,8 @@ def playCvMontage(cap, mon, title="Montage", filename="mon.avi", srt=None, place
     elif key == 'p':
       duration = time() - T0
       print("%i time=%.3fs %.3ffps" %(index, duration, index/duration) )
+      s=input('>')
+      if s.isdigit(): i1=int(s);cap.set(cv2.CAP_PROP_POS_FRAMES, i1);index=i1
     qnext, img = cap.read()
     index += 1
   vid.release()
