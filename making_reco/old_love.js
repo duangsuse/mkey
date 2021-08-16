@@ -42,8 +42,10 @@ if(0)scan([.275,.28,.006,.01], mandel())
   //https://ide.wy-lang.org/?file=mandelbrot_1
 
 //https://dev.to/foqc/mandelbrot-set-in-js-480o
+//https://blog.mythsman.com/post/5d2aa68cf678ba2eb3bd340c/
+//https://www.cnblogs.com/easymind223/archive/2012/07/05/2578231.html
 
-let
+  let
 cReal=[-2,1],cImag=[-1,1]
 colors = Array(16).fill("").map((_, i) => i==0 ? '#000' : `#${(2**12 * Math.random() |0).toString(16)}`)
 
