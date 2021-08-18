@@ -2,8 +2,8 @@ let{sqrt,abs,floor,exp,sin,cos}=Math;
 
 love=a=>(x,y)=>(r=> a*y+r - a*sqrt(r)) (x**2+y**2)
 heart=a=>(x,y)=> x**2+(y-abs(x)**(2/3))**2 -a  //https://blog.csdn.net/qq_28888837/article/details/82823025
-//y=sqrt(2*abs(x)-x*x), sqrt(2*sqrt(x^2)-x^2)
-// x^2/3+0.9-(3.3-x^2)^2/3 *sin(a*PI*x)
+//y=sqrt(2*abs(x)-x*x), //sqrt(2*sqrt(x^2)-x^2) sqrt(1.2sqrt\ abs\left(x\right)^2+x^2)-3
+// x^2/3+0.9-(3.3-x^2)^2/3 *sin(a*PI*x) //abs(x)^2/3-(7/3-x^2)^2/3 *sin(a*pi*x+b)
 //即 x^2/3+0.75*sqrt(3.3-x^2)*sin(a*x*PI)
 cream=(x,y)=>sin(sqrt(abs(x-3-0.5*y)**1.5))+exp(-((y-6)**2))-1 //http://cn.voidcc.com/question/p-sergkxfk-bns.html
 dna=(x,y)=>-0.75*cos(x)**2+cos(y)**2*sin(2*x)**2*sin(30)+0.25*(0.8+2*cos(y)*sin(y-120)*sin(x)**2)**2 //https://www.ilovematlab.cn/thread-217990-1-1.html
