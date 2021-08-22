@@ -1,6 +1,6 @@
 let{sqrt,abs,floor,exp,sin,cos}=Math;
 
-love=a=>(x,y)=>(r=> a*y+r - a*sqrt(r)) (x**2+y**2)
+love=a=>(x,y)=>(r=> a*y+r - a*sqrt(r)) (x**2+y**2)//+- 小环, 左x水滴
 heart=a=>(x,y)=> x**2+(y-abs(x)**(2/3))**2 -a  //https://blog.csdn.net/qq_28888837/article/details/82823025
 //y=sqrt(2*abs(x)-x*x), //sqrt(2*sqrt(x^2)-x^2) sqrt(1.2sqrt\ abs\left(x\right)^2+x^2)-3
 // x^2/3+0.9-(3.3-x^2)^2/3 *sin(a*PI*x) //abs(x)^2/3-(7/3-x^2)^2/3 *sin(a*pi*x+b)
