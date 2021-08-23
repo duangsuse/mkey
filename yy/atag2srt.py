@@ -1,4 +1,4 @@
-from srt import Subtitle,timedelta
+from srt import Subtitle,timedelta, parse #pipe(Eq(parse,compose), each(prop("start end content"), join("\t")), join("\n"))
 import sys
 # 有点鸡肋,hachiko-bapu 的 lrc_merge 也能做但太重, 
 def catT1(a,b): #若没zip2保存, 左移动 t0 的话整个会乱掉, 必须知道右边是啥移 t1
@@ -12,4 +12,8 @@ def zip2(f,f1,z):
   x=next(z)
   for x1 in z:f(x,x1);yield f1(x);x=x1
   yield f1(x)
-print("".join( zip2(catT1,Subtitle.to_srt,(Subtitle(1+i,*item(ln)) for i,ln in enumerate(open(sys.argv[1],'r')) )) ))
+fp=open(sys.argv[1],'r'); ts=timedelta.total_seconds
+print(
+  "\n".join(map(lambda x: f"{ts(x.start)}\t{ts(x.end)}\t{x.content}",  parse(fp.read()))) if fp.name.endswith(".srt")
+  else "".join( zip2(catT1,Subtitle.to_srt,(Subtitle(1+i,*item(ln)) for i,ln in enumerate(fp) )) )
+)
