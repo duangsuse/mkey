@@ -3,13 +3,13 @@ const
 n=o=>o.length,ss=s=>s.split(" "),$YN=f=>[f(1),f(0)],doc=document,//抱歉 缩写区
 newA=(n,op=noOp)=>{let a=Array(n),i=0;for(;i<n;i++)a[i]=op(i); return a},noOp=(x=>x),NO=null,
 
-lnCover=e0=>i=>{ //移到行i覆盖, i->多j
+lnReplace=e0=>i=>{ //移到行i覆盖, i->多j
   let nd=i+1 -n(e0.childNodes), e;
   if(nd>0)while(nd--)e0.append("\n");//补齐nd个空行
   e=e0.childNodes[i]; e.__proto__={__proto__:e.__proto__,get s(){return this.textContent.slice(0,-1)},set s(v){this.textContent=v+"\n"}};
   return e
 },
-mvIns=(s,i,ss)=>{ //移到列j插入
+wordIns=(s,i,ss)=>{ //移到列j插入
   let nFil=i-n(s), sF=nFil>0?" ".repeat(nFil):""; //补齐空列
   return(nFil>=0||/\s/.test(s[i]))? s.slice(0,i)+sF+ss+s.slice(i)
   : s.slice(0,i)+/(\S*)/.exec(s.slice(i))[1] +ss //位置含词 不得打断它
@@ -18,7 +18,7 @@ _el=(t,...c_ee)=>{t/*tag*/=t.nodeType?t:doc.createElement(t); while(typeof c_ee[
 el=new Proxy(_el, {get:(o,k)=>o[k]||(o[k]=(...a)=>_el(k,...a))}),
 ref=(o,k)=>v=>(v==NO)?o[k]:(o[k]=v), also=(o,f)=>{f(o);return o};
 
-console.log(_r=["a 1 x", "a 0 x", " 0 x", "abc 1 h", "abc 4 h", "i 1 i1"], _r.map(s=>mvIns(...ss(s)) ), mvIns(" i",0,"i1"))
+console.log(_r=["a 1 x", "a 0 x", " 0 x", "abc 1 h", "abc 4 h", "i 1 i1"], _r.map(s=>wordIns(...ss(s)) ), wordIns(" i",0,"i1"))
 
 //配置
 升=1, 正序=(a,b)=>a==b||(升?a<b : a>b),
@@ -63,11 +63,11 @@ editCode=async(e,theme="ace/theme/tomorrow")=>{
 _code=f=>String(f).slice(n("function(){\n"),-1);
 
 PVis=Object.assign((e0,a,i0=1)=>{ //< 可视模型本尊
-  let ln=lnCover(e0), U=()=>PVis._a.push(e0.textContent)/*帧*/, upd=()=>{ln(i0).s=a.toString();U();return 1}; upd()
+  let ln=lnReplace(e0), U=()=>PVis._a.push(e0.textContent)/*帧*/, upd=()=>{ln(i0).s=a.toString();U();return 1}; upd()
   return{//画布操作
   ptr:(k,di=-1)=>ia=>{
     let j=ia==0?0:n(a.slice(0,ia).toString())+1, e=ln(i0+di);
-    e.s=mvIns(e.s.replace(k,""),j,k,"");U();
+    e.s=wordIns(e.s.replace(k,""),j,k,"");U();
     return ia
   },
   vstr:(s_pre="", di=2)=>o=>{

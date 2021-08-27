@@ -40,9 +40,9 @@ gXYCached=(f,fst,frac=1000,c=new Map)=>(x,y)=>{
   const tu=v=>round(v*frac)/frac, cc=v=>getOrCalc(c,v,()=>new Map) //y*frac+abs(x)
   y=tu(y),x=tu(x); let s,b; //if(b!=null){if(y==0) g.putImageData(b,0,y);return 1}else{c.set(s,g.getImageData(0,y,w,1));return f(x,y)}
   //if(b==null){s.set(x,b=f(x,y))}return b //(b!=null)?b : c.set(s,r=f(x,y))&&r
-  if(fst[0]){fst[0]=false; s=cc(y),b=s.get(x); (b!=null)?g.putImageData(b,0,0)&(fst[1]=false) :cc(fst[3]).set(fst[2],g.getImageData(0,0,w,h))&g.clearRect(0,0,w,h); fst[2]=x,fst[3]=y}
+  if(fst[0]){fst[0]=false; s=cc(y),b=s.get(x); (b!=null)?g.putImageData(b,0,0)&(fst[1]=false) :cc(fst[3]).set(fst[2],g.getImageData(0,0,w,h))&g.clearRect(0,0,w,h)/*删=3D*/; fst[2]=x,fst[3]=y}
   return fst[1]?f(x,y): Infinity;
-}//还是按照每帧左上点弄吧
+}//还是按照每帧左上点弄吧，只y,x就没弄 Trie字典, 好像等于做在 find 里提前返回... 这不是兼容参a动画的情况吗, 嵌套搞错了 另个是 anim(, gCache(a=>find(love(a)) ))
 if(1){cFind.bgVisf=i=>`hsl(122,35%,${i*100}%)`
 cFind.d=1;cFind.dsov=.1;cFind.bgSov="cadetblue";cFind.dvis=20/60;
 let a=[true,true,0,0], f=gXYCached(mandel(), a)//gCache不适用多参
@@ -56,3 +56,5 @@ love=(a,c=0.5)=>(x,y)=>x*x+(y-abs(x)**c)**2 -a
 
 if(0)for(let l=f=>2*f(t)-f(2*t), t=0;t<2*PI;t+=0.1) putP(l(sin), l(cos)) //都得有x0y0 x1y1
 if(0)for(let x=vx,dx=kx/w;x<w;x+=dx)putP(x,(f(x)-y0)*ky) //x 于 0~w 映射数学世界, (y-y0)*ky 映射回屏幕
+//    filter: drop-shadow(2px 4px 27px red) 也可以有了
+
