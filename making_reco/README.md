@@ -14,7 +14,7 @@
 
 - sorts3 是 四种常见排序含UI那期，本打算做可视可听化 , 总迭代4次, sorts2 里有段8bit音乐
 - scan_ops,ops,infix 是递等式四则计算器那期, ops, 是其基础及原理, 本来是试做scan.js 跳空格,有点累... 
-- 讲师.js 是心形函数那期, love_quad 是四分扫描法(love_4quad), old_love(love) 含老 M.图写法, love_improv 列了些隐函数
+- 讲师.js 是心形函数那期模糊描边 Mandelbrot 融合, love_quad 是四分扫描法(love_4quad), old_love(及最简 love) 含老 M.图写法,引文链接,BFS着色, love_improv 除了能靠移动鼠标切换步骤和扫描序, 也列了些隐函数, 可参考 [slicker](http://slicker.me/fractals/animate.htm)
 - old_弦图在项目 /tv/点计算1 可见
 
 解析器系
@@ -29,3 +29,4 @@
 - prop 是 getset, bind, swap 的快速定义工具和 exper.js 的属性绑定, 迭代 prep,phyv,dfs,ord 各自详略有不同
 - 玩.js 是一个文本表格式等价关系的转化测试
 - eval 是测试JS元编程中 eval 以简短名访问局部变量可能性:不可能
+- prelude.js 是枚举 mk 的一些预定义关系的，目前没写, 相关可看 SWI-prolog.org

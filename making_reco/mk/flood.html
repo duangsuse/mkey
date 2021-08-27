@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>光线条图像切变效果</title>
+  </head>
+  <body>
+<canvas id=g></canvas>
+<canvas hidden></canvas>
+<style>#g{width:70%;height:100%} body{height:70vh}</style>
+<script>
+const doc=document,
+[g,gHid]=[...doc.querySelectorAll("canvas, canvas[hidden]")].map(e=>e.getContext("2d") ),
+rfill=(z,f0,f)=>{//对序列xz首项a=f0,其余f(x,a)
+},eG=g.canvas;
+(onresize=()=>{for(let e of[eG,gHid.canvas]) e.width=eG.offsetWidth,e.height=eG.offsetHeight;})()
+gHid.fillRect(0,0,200,150)
+g.putImageData( gHid.getImageData(0,0,200,200),0,0)
+
+function* lines(dir,v0,v1=-1,nPx=1){}
+
+//可以支持摄像头按行扫描摄像?
+</script>
+  </body>
+</html>
