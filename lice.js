@@ -231,8 +231,7 @@ noScroll=e=>{ // 关于 scroll 有个问题，clip:text 是不支持的，所以
 //了解到 resizer 实质靠 style 属性调整宽高(汗)，那么 MutationObserver(observe e0,fn(records{type,target,add/removed Nodes,Sibling},o), {characterData,attribute Name?s,childList,subtree}OldValue? ; takeRecords;disconnect) 就能监听变更了, webkit 不支持 DOMAttrModified
 
 //啊不愧是异步监听队列，真丝滑！
-
-code=s=>encodeURIComponent(s[0].replaceAll(".","%2e"))
+code=s=>encodeURIComponent(1?/\./[Symbol.replace](s[0],"%2e"):s[0].replaceAll(".","%2e"))
 const LOREM=code`Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
 ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
