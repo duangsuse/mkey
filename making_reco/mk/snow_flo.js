@@ -49,21 +49,26 @@ class Snow{
   upd(g){let{x,y,l, vx,vy}=this;
     g.moveTo(x,y);g.arc(x,y,l, 0, 2*Math.PI);
     this.x+=vx;this.y+=vy;
+    //x>w+l || y<-l
     if(x<-l || y>h+l)this.reset() //这些符号位增减关系麻烦的很.. 很难可配置
   }
-  static partic=[.5,2.7, 0,1.5*w, -2*h,0, -.5,-2.5, .5,3]
+  static partic=0?[.5,3, -w,0, h,h*2, .5,3, -.5,-3]:[.5,2.7, 0,1.5*w, -2*h,0, -.5,-2.5, .5,3]
 } //四个方向 与宽高距离, vxy 速度都有区间可调，粒子动画难死了
 
 snow=(N,nC,bg,fg)=>{
   let a=Array(N).fill().map(()=>new Snow)//全局化可允不同配
-  return()=>{g.fillStyle=bg;g.fillRect(0,0,w,h);
+  return()=>{g.fillStyle=bg;g.fillRect(0,0,w,h);//利用闭包帧性能下降严重
     for(let i = 0, ww=Math.floor(N / nC); i < nC; ++i) {
     for (let j0=(i*ww),j=0; j<ww; ++j){g.beginPath();a[j0+j].upd(g);
     g.closePath();g.fillStyle=fg;g.fill();}
   }}
-}
+}/*
+一层随机范围参数：半径、起始xy、速度xy
+二层：方向、最大半径&半径差、起始xy与屏宽高比率/松散度、y速度、x速度差
+*/
 
-f=snow(9000,100, "hsla(0,0%,10%, 0.5)","white")
+f=snow(9000,10, "hsla(0,0%,10%, 0.5)","white")
 ru=()=>{f();requestAnimationFrame(ru)}
 ru()
+//setInterval(f)
 //这次写个 fire 的...

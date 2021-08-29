@@ -65,7 +65,7 @@ rand1P=(a,b)=>Math.random() * (b-a +1) + a,
 setRand=(o,k,va)=>{
   let i=0,ia=0,N=k.length;
   for(;i<N;i++,ia+=2)o[k[i]]=rand1P(va[ia],va[ia+1])
-}
+},reqAF=window.requestAnimationFrame
 class Snow{
   //仅位&速向量
   constructor(){this.reset()}
@@ -79,7 +79,7 @@ class Snow{
 
 let N,nC=10,stars = Array(N=10000).fill().map(()=>new Snow)//[];
 //for (let i = 0; i < 10000; ++i)stars.push(new Snow);
-window.requestAnimationFrame(function frame(timestamp) {
+reqAF(function frame(timestamp) {
     g.fillStyle = "hsla(0, 0%, 10%, 0.5)";
     g.fillRect(0, 0, w, h);
 
@@ -91,7 +91,7 @@ window.requestAnimationFrame(function frame(timestamp) {
     g.fill();
   }
 
-    window.requestAnimationFrame(frame);
+    reqAF(frame);
 });
 
 </script>

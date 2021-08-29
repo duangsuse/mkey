@@ -11,13 +11,34 @@
 <script>
 const doc=document,
 [g,gHid]=[...doc.querySelectorAll("canvas, canvas[hidden]")].map(e=>e.getContext("2d") ),
-rfill=(z,f0,f)=>{//对序列xz首项a=f0,其余f(x,a)
+letNul=(o,f)=>(o===undefined)?o:f(o), next=z=>z.next().value,
+rfill=(xz,f0,f)=>{//对序列xz首项a=f0,其余f(x,a)
+  let i=0, a=letNul(next(xz),f0); for(x of xz)f(x,a)
+  return a
 },eG=g.canvas;
 (onresize=()=>{for(let e of[eG,gHid.canvas]) e.width=eG.offsetWidth,e.height=eG.offsetHeight;})()
-gHid.fillRect(0,0,200,150)
-g.putImageData( gHid.getImageData(0,0,200,200),0,0)
+gHid.font="100pt sans";gHid.strokeText("Hello !!W世界",0,110) //.strokeRect(0,0,200,150)
+gHid.fillText("渐变特效！",60,190)
 
-function* lines(dir,v0,v1=-1,nPx=1){}
+function* lines(g,dir,v0,v1=-1,nPx=1){
+  let{width:w,height:h}=g.canvas;
+  let qH=dir<0, xy=qH?()=>[v,0,nPx,h] : ()=>[0,v,w,nPx],
+  d=Math.floor(Math.abs(dir)/ (dir%2==0? -2 : 2)), v;
+  if(v1<0)v1=(qH?w:h)+v1; //v v0~1 始终朝升/降方向，而不是升方向的 v=v1;v>=v0 v1指定始点
+  if(d<0)for(v=v1-v0; v>=0; v+=d)yield xy(); else for(v=v0; v<v1; v+=d)yield xy();
+}
+//以dir(正纵,3奇增)扫描，帧累加 v0 直到 rfill 取不到首项
+
+方向=()=>parseInt(prompt("方向","3"))||3
+doc.onclick=()=>{let z=lines(g,方向(),0), id=setInterval(()=>{let r=next(z);if(!r)return clearInterval(id); g.fillRect(...r) })  }
+//g.putImageData( gHid.getImageData(0,0,200,200),0,0)
+
+flood=async(g1,dir=3)=>{let i=0,r;
+  while(rfill(lines(g,dir,i), a=>g1.getImageData(...a), ([x,y],im)=>g.putImageData(im,x,y) )!=null){ i++; await delay(10)}
+},
+delay=dt=>new Promise(done=> setTimeout(done,dt) )
+
+flood(gHid,方向())
 
 //可以支持摄像头按行扫描摄像?
 </script>
