@@ -4,7 +4,7 @@ splitOneOf=(cs,s,f)=>{
   for(let k=0;i<N;i++)if((k=cs.indexOf(s[i])) !=-1){a.push(s.slice(i0,i));f(a,k); i0=i+1}  a.push(s.slice(i0));f(a,-1)
   return a
 },
-H=(ss,...child)=>{
+H=(ss,...child)=>{ //可在 parent 加* 但内 querySelector 结果不会变 ，故只能用 [] 滤出符合项、e 查出收集，项的属性
   let i=0, a=splitOneOf(" \u0000",ss.join("\u0000"), (a,k)=>{let i1=a.length-1,s=a[i1], si,sk;
     if(k==1||(si=s.lastIndexOf(":"))!= -1){
       if(k==1){s=Object(s);s.inn=child[i];i++}else

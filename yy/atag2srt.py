@@ -6,7 +6,7 @@ def catT1(a,b): #若没zip2保存, 左移动 t0 的话整个会乱掉, 必须知
 def item(s, t=lambda n:timedelta(seconds=float(n))):
   (a,b,ln)=s.split('\t')
   t0=t(a); t1=t(b)
-  return(t0,t1,input(f"{t0}>") if ln.isspace() else ln)
+  return(t0,t1,sys.stderr.write(f"{t0}>")and input() if ln.isspace() else ln)
 
 def zip2(f,f1,z):
   x=next(z)
