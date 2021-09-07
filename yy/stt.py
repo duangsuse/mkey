@@ -54,6 +54,7 @@ if 0:#对照组: VOSK 的分词根本密集到不能拿来做字幕
 modprobe snd-aloop pcm_substreams=1
 aplay -l; arecord -l
 https://qastack.cn/superuser/733061/reduce-background-noise-and-optimize-the-speech-from-an-audio-clip-using-ffmpeg
+https://ccoreilly.github.io/vosk-browser/
 
 https://dt.iki.fi/record-system-output-alsa
 https://www.cnblogs.com/zhangxiuyuan/p/12016911.html
@@ -61,4 +62,18 @@ https://blog.csdn.net/weixin_39715290/article/details/116857400
 https://www.jianshu.com/p/6e61010333f9
 https://blog.csdn.net/leixiaohua1020/article/details/39702113 SDL
 https://www.cnblogs.com/oler/p/13437701.html V4L2
+
+import os,argparse;c=argparse.Namspace(**os.environ)
+wordz=recog(stdin.buffer.detach(),
+
+from fcntl import fcntl
+import selectors
+def flg(f,fl, kGET=3):fcntl(f,kGET+1,fcntl(f,kGET)|fl)
+fIn=stdin.buffer.detach()
+flg(fIn,2048)#nonblock
+
+sel=selectors.DefaultSelector()
+sel.register(fIn,selectors.EVENT_READ, once)
+while True:
+  for ev,fl in sel.select(): ev.data(ev.fileobj)
 '''
