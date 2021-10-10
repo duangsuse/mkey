@@ -4,7 +4,7 @@
 
 基本上每个话题都有三四次迭代，除了prop.js的迭代各不同另外的名字上有共同点，但编号不一定代表顺序…… 混乱
 
-- scan.md, scan_ess 是 ScanJS(ParserKt 新版)的介绍和 高亮编辑器的一些预备, 初试在 hlbg等-预备 及  ,还有 Trie,Suffix切分树
+- scan.md, scan_ess 是 ScanJS(ParserKt 新版)的介绍和 高亮编辑器的一些预备, 初试在 hlbg等-预备 及  ,还有 Trie,Suffix切分树(../lice 里试了一大堆)
 - 大提纲尚和 mkey 有关，有讲了 equiv,scan 和很繁的 prop
 代码
 - mkey,muK1, muK 是对 mk 之前的两次迭代，基本认为后写的模型简洁，前写的更像乱用元编程手段
@@ -20,7 +20,7 @@
 解析器系
 
 - scan_fin 是学校做好,保护的浮点字面，无代码 JSON 解析, scan 则较新
-- scan_lice_ord 也是尝试做高亮，和 lice 解释器混在一起没成功，内容上也没Visitor,tvr模型和 slicerP 的进步-
+- scan_lice_ord 也是尝试做高亮 它 slicerP 是最新，和 lice 解释器混在一起没成功，内容上也没Visitor,tvr模型和 slicerP 的进步-
 - ../lice 是真给 textarea 高亮、树编辑器了的 `animTC()`; ../relex(0) 是旧状态机式分词器的数据结构化,`` ES6 template
 - ../lice2 是对 Ace 的吐嘈, /lice 则是编辑器最初规划
 

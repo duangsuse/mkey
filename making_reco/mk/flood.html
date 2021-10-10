@@ -34,7 +34,7 @@ doc.onclick=()=>{let z=lines(g,方向(),0), id=setInterval(()=>{let r=next(z);if
 //g.putImageData( gHid.getImageData(0,0,200,200),0,0)
 
 flood=async(g1,dir=3)=>{let i=0,r;
-  while(rfill(lines(g,dir,i), a=>g1.getImageData(...a), ([x,y],im)=>g.putImageData(im,x,y) )!=null){ i++; await delay(10)}
+  while(rfill(lines(g,dir,i), a=>g1.getImageData(...a), ([x,y],im)=>g.putImageData(im,x,y) )!=null){ i++; await delay(10)} // i++流块在减小. 出场动画 流块自g原图, 增大
 },
 delay=dt=>new Promise(done=> setTimeout(done,dt) )
 

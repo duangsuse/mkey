@@ -44,7 +44,7 @@ el(doc.body, app.e=el.div(wStyle(`border: 1px solid;white-space: pre;
    el.hr(),
    el.inp("升序","checkbox", v=>v==NO?升:(升=v) ),
    el.opt("算法", ss("插入 冒泡 快速 合并").map(k=>`${k}排序`).concat(ss("例0 例0b 例1 例2")), ref(cfg,"kAlg") ),
-   el.opt("渲染方式", ss("文本 柱形 散点"), ref(cfg,"kDisp") ), //修改P变量添加支持略麻烦，和 osc 参数“可听化排序”下期做
+   el.opt("渲染方式", ss("文本 柱形 散点 HSL彩"), ref(cfg,"kDisp") ), //修改P变量添加支持略麻烦，和 osc 参数“可听化排序”下期做
    el.inp("帧时差", "number", ref(cfg,"dt")),
    el.inp("预备","",ref(cfg,"code_pre")),
    el.button(e=>e.onclick=()=>{
