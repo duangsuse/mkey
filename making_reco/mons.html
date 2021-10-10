@@ -1,0 +1,38 @@
+<hr>
+<script>doc=document
+
+doc.title=`年内月历`//无闰年,Date API 不便于枚举.
+_31=[1,3,5,7,8,10,12]
+//29=[4]
+
+yyyy=parseInt(prompt("年份"))||(new Date).getFullYear()
+
+el=(e0,k,...ee)=>{let e=doc.createElement(k),x;for(x of ee)e.append(x); return e0.appendChild(e)}
+rep=(n,f)=>{while(n--)f()}
+el(doc.head, "style",`p{display: grid;
+    grid-template-columns: repeat(7,calc(100% / 7));
+    border: 2px solid brown;
+    padding: .5em;
+    position:relative
+}
+p>:first-child{position:absolute;right:0; background:gray}
+`)
+
+weekYM=(y,m)=>{let d=new Date
+d.setFullYear(y);d.setMonth(m);//别d.setDate(i)
+return d.getDay()//0=日
+}//可以不new Date. 也可 new Date(y,m,0) 年月
+
+//可以 table>th[colspan=7] 渲染
+
+e月=i=>{let 日末=_31.includes(i)?31: (i==4)?29 : 30,
+  e=el(doc.body,"p");
+  [`${i+1}月`, ..."日一二三四五六"].forEach(s=> el(e,"span",s) )
+  rep(Math.max(0,weekYM(yyyy,i)-1), _=>{ el(e,"span") })
+  for(let i=1,ee;i<日末+1;i++)el(e,"span",i)
+//   {ee=doc.createElement("span");ee.innerText=i;e.append(ee)}
+//不必return e
+}
+
+for(let i=0;i<12;i++)e月(i)
+</script>
